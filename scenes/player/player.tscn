@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://db7mbvilunwix" path="res://scenes/player/player.gd" id="1_lvxji"]
 [ext_resource type="Texture2D" uid="uid://mwf4btpu8pvi" path="res://Sprites/Actor/Characters/boy/SeparateAnim/idle.png" id="2_gmlin"]
 [ext_resource type="Texture2D" uid="uid://ddjx6vc5aohu8" path="res://Sprites/Actor/Characters/boy/SeparateAnim/walk.png" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://c8h8ekh2ci2ob" path="res://scripts/fsm.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://crsuah38hdkr4" path="res://scenes/player/states/player_state_idle.gd" id="6_75vfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
 atlas = ExtResource("2_gmlin")
@@ -760,3 +762,14 @@ frame_progress = 0.36670294
 shape = SubResource("CapsuleShape2D_gmlin")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1777750588]
+
+[node name="FSM" type="Node" parent="." unique_id=679168367]
+script = ExtResource("5_p47bc")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM" unique_id=1522082718]
+script = ExtResource("6_75vfm")
+
+[node name="Walk" type="Node" parent="FSM" unique_id=1641878709]
+
+[node name="Attack" type="Node" parent="FSM" unique_id=239243189]
