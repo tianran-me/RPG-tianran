@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://crsuah38hdkr4" path="res://scenes/player/states/player_state_idle.gd" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://ddnno3sxpcrgo" path="res://scenes/player/states/player_state_walk.gd" id="7_qek5x"]
 [ext_resource type="Script" uid="uid://bwr52dowfduk8" path="res://scenes/player/states/player_state_attack.gd" id="8_5gtgg"]
+[ext_resource type="PackedScene" uid="uid://c2xuj6knu4hvs" path="res://scenes/health_component/health_component.tscn" id="9_5gtgg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
 atlas = ExtResource("2_gmlin")
@@ -777,3 +778,5 @@ script = ExtResource("7_qek5x")
 
 [node name="Attack" type="Node" parent="FSM" unique_id=239243189]
 script = ExtResource("8_5gtgg")
+
+[node name="HealthComponent" parent="." unique_id=194864319 instance=ExtResource("9_5gtgg")]

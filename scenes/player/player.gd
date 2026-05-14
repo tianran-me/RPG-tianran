@@ -11,10 +11,12 @@ class_name Player
 @export var	crit_damage: float = 0.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
+@onready var health_component: HealthComponent = $HealthComponent
 
 #把有限状态系统，放进玩家类里面
 @onready var fsm: FSM = $FSM
 
+var curr_mana:float
 var last_direction: String = "down"
 
 func _process(delta: float) -> void:
@@ -52,3 +54,20 @@ func update_direction(input_vector: Vector2) -> void:
 
 func play_direction_anim(anim_name: String) ->void:
 	animated_sprite.play("%s_%s" % [anim_name,last_direction])
+
+func setup()->void:
+	rest_health()
+	rest_mana()
+
+func rest_health() ->void:
+	health_component.setup(max_health)
+	EventBus.on_player_health_updated.emit(max_health,max_health)
+
+func rest_mana() ->void:
+	curr_mana = max_mana
+	EventBus.on_player_mana_updated.emit(max_mana,max_mana)
+
+func use_mana(value:float) ->void:
+	curr_mana -= value
+	curr_mana = max(curr_mana,0)
+	EventBus.on_player_mana_updated.emit(curr_mana,max_mana)
