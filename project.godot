@@ -23,7 +23,6 @@ EventBus="*uid://tkh8l3vk6bbh"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]
