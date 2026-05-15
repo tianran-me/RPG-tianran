@@ -20,6 +20,13 @@ class_name Player
 #把有限状态系统，放进玩家类里面
 @onready var fsm: FSM = $FSM
 
+@onready var attack_positions: Dictionary = {
+	"up": %Up,
+	"down": %Down,
+	"left": %Left,
+	"right": %Right
+}
+
 var curr_exp: float
 
 #下一级所需经验量
