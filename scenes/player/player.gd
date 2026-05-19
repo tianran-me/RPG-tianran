@@ -17,8 +17,11 @@ class_name Player
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var health_component: HealthComponent = $HealthComponent
 
+@onready var enemy_area: Area2D = %EnemyAttackArea
+
 #把有限状态系统，放进玩家类里面
 @onready var fsm: FSM = $FSM
+@onready var weapon: Node2D = $Weapon
 
 @onready var attack_positions: Dictionary = {
 	"up": %Up,
@@ -70,9 +73,9 @@ func update_direction(input_vector: Vector2) -> void:
 	#TODO，后面更新为8方向动画
 	if abs(input_vector.x) > abs(input_vector.y):
 		if input_vector.x >0:
-			last_direction = "right_down"
+			last_direction = "right"
 		else:
-			last_direction = "left_down"
+			last_direction = "left"
 	else :
 		if input_vector.y >0:
 			last_direction = "down"
@@ -114,3 +117,8 @@ func use_mana(value:float) ->void:
 	curr_mana -= value
 	curr_mana = max(curr_mana,0)
 	EventBus.on_player_mana_updated.emit(curr_mana,max_mana)
+
+func enable_weapon_collision(value: bool) -> void:
+	
+	#敌人区域监控
+	enemy_area.monitoring = value
